@@ -1,13 +1,16 @@
 package com.ollymonger.loginmessage;
 
 import jdk.internal.util.xml.impl.Input;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.util.Random;
 
 public final class LoginMessage extends JavaPlugin {
 
@@ -55,6 +58,15 @@ public final class LoginMessage extends JavaPlugin {
         getData(); //calls getData
     }
 
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) { //when a player joins run this
+        String random = this.getConfig().getStringList("joinmessages").get(new Random().nextInt(this.getConfig().getStringList("joinmessages").size())); //random selector of config.yml
+        for(Player player : Bukkit.getServer().getOnlinePlayers()){
+            String export = random.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
+            event.setJoinMessage(export); // sets the join message to the exported random.
+        }
+    }
 
     @Override
     public void onDisable() {
