@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group 'com.ollymonger.test.stuff'
-version '1.0-SNAPSHOT'
+group 'com.ollymonger.loginmessages'
+version '1.14.3'
 
 sourceCompatibility = 1.8
 
