@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ollymonger.test.stuff'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+dependencies {
+    compile 'org.bukkit:bukkit:1.14.2-R0.1-SNAPSHOT'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'http://repo.mikeprimm.com/' }
+}

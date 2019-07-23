@@ -1,0 +1,7 @@
+name: LoginMessage
+version: 1.14.3
+main: com.ollymonger.loginmessage.LoginMessage
+api-version: 1.13
+authors: [ollymonger]
+description: Allows you to create, save and load customized login messages.
+website: www.yllo.co.uk
