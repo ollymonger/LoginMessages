@@ -27,7 +27,7 @@ public final class LoginMessage extends JavaPlugin implements Listener {
             File file = new File(getDataFolder(), "config.yml"); //sets file name and file folder
             if (!file.exists()) { //makes file if none exists
                 getLogger().info("CONFIG NOT FOUND, CREATING A NEW CONFIG!");
-                getConfig().options().copyDefaults(false);
+                getConfig().options().copyDefaults(true);
                 saveDefaultConfig(); //saves default config
             } else {
                 getLogger().info("CONFIG FOUND! Loading!");
@@ -87,6 +87,14 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
                     sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
                 }
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
+                    sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
+                    List<String> joinPrefix = this.getConfig().getStringList("prefix");
+                    joinPrefix.clear();
+                    joinPrefix.add(args[1]);
+                    this.getConfig().set("prefix", joinPrefix);
+                    saveConfig();
+                }
                 if (args.length == 1 && args[0].equalsIgnoreCase(args[0])){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[0]);
                     List<String> list = this.getConfig().getStringList("loginmessages");
@@ -106,6 +114,14 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
                     sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
+                }
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
+                    sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
+                    List<String> joinPrefix = this.getConfig().getStringList("prefix");
+                    joinPrefix.clear();
+                    joinPrefix.add(args[1]);
+                    this.getConfig().set("prefix", joinPrefix);
+                    saveConfig();
                 }
                 if (args.length == 1 && args[0].equalsIgnoreCase(args[0])){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[0]);
