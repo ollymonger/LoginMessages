@@ -41,6 +41,7 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                 }
                 if (!this.getConfig().contains("loginmessages")) {
                     this.getConfig().createSection("loginmessages");
+                    this.getConfig().createSection("prefix");
                     getLogger().info("Config successfully set up!");
                     saveConfig();
                 }
@@ -63,13 +64,13 @@ public final class LoginMessage extends JavaPlugin implements Listener {
         getData();
     }
 
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) { //when a player joins run this
         String random = this.getConfig().getStringList("loginmessages").get(new Random().nextInt(this.getConfig().getStringList("loginmessages").size())); //random selector of config.yml
+        String joinPrefix = this.getConfig().get("prefix").toString();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             String export = random.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
-            event.setJoinMessage(export); // sets the join message to the exported random.
+            event.setJoinMessage(joinPrefix + " " + export); // sets the join message to the exported random.
         }
     }
 
