@@ -5,3 +5,10 @@ api-version: 1.13
 authors: [ollymonger]
 description: Allows you to create, save and load customized login messages.
 website: www.yllo.co.uk
+commands:
+  loginmessage:
+    description: default command for login message
+    usage: /<command> <message>
+  lm:
+    description: secondary command for login message
+    usage: /<command> <message>
