@@ -19,6 +19,21 @@ public final class LoginMessage extends JavaPlugin implements Listener {
 
     public String prefix = ChatColor.translateAlternateColorCodes('&', "&6[&7LMSG&6]&r ");
 
+    public void createConfig() {
+        this.getConfig().createSection("loginmessages");
+        List<String> loginmessage = this.getConfig().getStringList("loginmessages");
+            loginmessage.add("Welcome to the server, %player%.");
+            this.getConfig().set("loginmessages", loginmessage);
+
+        this.getConfig().createSection("prefix");
+            List<String> prefix = this.getConfig().getStringList("prefix");
+            prefix.add("SERVER");
+            this.getConfig().set("prefix", prefix);
+
+        getLogger().info("Config successfully set up!");
+        saveConfig();
+    }
+
     public void getData() {
         try {
             if (!getDataFolder().exists()) {
@@ -27,8 +42,7 @@ public final class LoginMessage extends JavaPlugin implements Listener {
             File file = new File(getDataFolder(), "config.yml"); //sets file name and file folder
             if (!file.exists()) { //makes file if none exists
                 getLogger().info("CONFIG NOT FOUND, CREATING A NEW CONFIG!");
-                getConfig().options().copyDefaults(true);
-                saveDefaultConfig(); //saves default config
+                createConfig();
             } else {
                 getLogger().info("CONFIG FOUND! Loading!");
                 try {
@@ -38,21 +52,6 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                     e.printStackTrace();
                 } catch (InvalidConfigurationException e) {
                     e.printStackTrace();
-                }
-                if (!this.getConfig().contains("loginmessages")) {
-                    this.getConfig().createSection("loginmessages");
-                    this.getConfig().createSection("prefix");
-                    getLogger().info("Config successfully set up!");
-                    saveConfig();
-                }
-                if (this.getConfig().getConfigurationSection("loginmessages").getKeys(false).isEmpty()) { //CHECKS IF EMPTY
-                    List<String> prefix = this.getConfig().getStringList("prefix");
-                    prefix.add("SERVER");
-                    this.getConfig().set("prefix", prefix);
-                    List<String> loginmessage = this.getConfig().getStringList("loginmessage");
-                    loginmessage.add("Welcome to the server, %player%.");
-                    this.getConfig().set("prefix", loginmessage);
-                    return;
                 }
             }
         } catch (Exception e) {
