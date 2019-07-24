@@ -1,4 +1,2 @@
 prefix:
-  - SERVER
-joinmessage:
-  - Change me in the config.yml inside LoginMessages!
+loginmessage:
