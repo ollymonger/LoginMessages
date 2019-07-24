@@ -75,8 +75,9 @@ public final class LoginMessage extends JavaPlugin implements Listener {
         String joinPrefix = this.getConfig().get("prefix").toString();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             String export = random.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
-            String chatColor = ChatColor.translateAlternateColorCodes('&', export); //Takes export, so if any chat colors they get translated
-            event.setJoinMessage(joinPrefix + " " + chatColor); // sets the join message to the exported random.
+            String messageColor = ChatColor.translateAlternateColorCodes('&', export); //Takes export, so if any chat colors they get translated
+            String prefixColor = ChatColor.translateAlternateColorCodes('&', joinPrefix); //Takes export, so if any chat colors they get translated
+            event.setJoinMessage(prefixColor + " " + messageColor); // sets the join message to the exported random.
         }
     }
 
