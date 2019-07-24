@@ -83,19 +83,14 @@ public final class LoginMessage extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.isOp()) {
             if (cmd.getName().equalsIgnoreCase("loginmessage")) {
-                if (args.length == 0) {
+                if (args.length == 1) {
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "/loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
                     sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
-                if (args.length == 1 && args[0].equalsIgnoreCase("help")){
-                    sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
-                    sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
-                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
-                }
-                if (args.length == 2 && args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("p")){
+
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
                     List<String> joinPrefix = this.getConfig().getStringList("prefix");
                     joinPrefix.clear();
@@ -116,16 +111,10 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                 if (args.length == 0) {
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "/loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
                     sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
-                if (args.length == 1 && args[0].equalsIgnoreCase("help")){
-                    sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
-                    sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
-                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
-                }
-                if (args.length == 2 && args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("p")){
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
                     List<String> joinPrefix = this.getConfig().getStringList("prefix");
                     joinPrefix.clear();
