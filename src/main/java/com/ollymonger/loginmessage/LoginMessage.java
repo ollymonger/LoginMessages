@@ -17,8 +17,8 @@ import java.util.Random;
 
 public final class LoginMessage extends JavaPlugin implements Listener {
 
-    public String prefix = ChatColor.translateAlternateColorCodes('&', "&6[&7LMSG&6]&r ");
 
+    public String prefix = ChatColor.translateAlternateColorCodes('&', "&6[&7LMSG&6]&r ");
     public void createConfig() {
         this.getConfig().createSection("loginmessages");
         List<String> loginmessage = this.getConfig().getStringList("loginmessages");
@@ -75,7 +75,8 @@ public final class LoginMessage extends JavaPlugin implements Listener {
         String joinPrefix = this.getConfig().get("prefix").toString();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             String export = random.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
-            event.setJoinMessage(joinPrefix + " " + export); // sets the join message to the exported random.
+            String chatColor = ChatColor.translateAlternateColorCodes('&', export); //Takes export, so if any chat colors they get translated
+            event.setJoinMessage(joinPrefix + " " + chatColor); // sets the join message to the exported random.
         }
     }
 
@@ -85,14 +86,16 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                 if (args.length == 0) {
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
+                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
                 if (args.length == 1 && args[0].equalsIgnoreCase("help")){
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
+                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
-                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("p")){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
                     List<String> joinPrefix = this.getConfig().getStringList("prefix");
                     joinPrefix.clear();
@@ -113,14 +116,16 @@ public final class LoginMessage extends JavaPlugin implements Listener {
                 if (args.length == 0) {
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
+                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
                 if (args.length == 1 && args[0].equalsIgnoreCase("help")){
                     sender.sendMessage(prefix + "This plugin allows you to set custom (randomised) login messages.");
                     sender.sendMessage(prefix + "Instead of spaces, use _ to create spaces between words, corrected on join.");
-                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /lm <message>.");
+                    sender.sendMessage(prefix + "/loginmessage help, /loginmessage <message>, /loginmessage prefix <prefix>, /lm <message>, /lm prefix <prefix>");
+                    sender.sendMessage(prefix + "... /lm <message>, /lm prefix <prefix>");
                 }
-                if (args.length == 2 && args[0].equalsIgnoreCase("prefix")){
+                if (args.length == 2 && args[0].equalsIgnoreCase("prefix") || args[0].equalsIgnoreCase("p")){
                     sender.sendMessage(prefix + "Returning the LoginMessage: " + args[1]);
                     List<String> joinPrefix = this.getConfig().getStringList("prefix");
                     joinPrefix.clear();
