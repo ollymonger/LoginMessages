@@ -65,18 +65,20 @@ public final class LoginMessage extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info("Plugin: LoginMessage is now enabled");
         getLogger().info("Plugin Version: " + getDescription().getVersion());
-        getLogger().info("Last Updated: (23/07/19)");
+        getLogger().info("Last Updated: (25/07/19)");
+        getLogger().info("Most Recent Update: Messages and prefixes can now use colour codes, prefixes can now have spaces (replaces _'s)");
         getData();
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) { //when a player joins run this
-        String random = this.getConfig().getStringList("loginmessages").get(new Random().nextInt(this.getConfig().getStringList("loginmessages").size())); //random selector of config.yml
+        String messageRandom = this.getConfig().getStringList("loginmessages").get(new Random().nextInt(this.getConfig().getStringList("loginmessages").size())); //random selector of config.yml
         String joinPrefix = this.getConfig().get("prefix").toString();
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            String export = random.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
-            String messageColor = ChatColor.translateAlternateColorCodes('&', export); //Takes export, so if any chat colors they get translated
-            String prefixColor = ChatColor.translateAlternateColorCodes('&', joinPrefix); //Takes export, so if any chat colors they get translated
+            String messageExport = messageRandom.replaceAll("%player%", player.getName()); //An export of the random that looks for %player% and replaces with the player's name.
+            String prefixExport = joinPrefix.replace("_", " ");
+            String messageColor = ChatColor.translateAlternateColorCodes('&', messageExport); //Takes export, so if any chat colors they get translated
+            String prefixColor = ChatColor.translateAlternateColorCodes('&', prefixExport); //Takes export, so if any chat colors they get translated
             event.setJoinMessage(prefixColor + " " + messageColor); // sets the join message to the exported random.
         }
     }

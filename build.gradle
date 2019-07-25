@@ -2,14 +2,14 @@ plugins {
     id 'java'
 }
 
-group 'com.ollymonger.test.stuff'
-version '1.0-SNAPSHOT'
+group 'com.ollymonger.loginmessages'
+version '1.14.3'
 
 sourceCompatibility = 1.8
 
 
 dependencies {
-    compile 'org.bukkit:bukkit:1.14.2-R0.1-SNAPSHOT'
+    compile 'org.bukkit:bukkit:1.14.3-R0.1-SNAPSHOT'
 }
 
 repositories {
